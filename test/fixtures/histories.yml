@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  borrower_id: 1
+  book_id: 1
+
+two:
+  borrower_id: 1
+  book_id: 1
