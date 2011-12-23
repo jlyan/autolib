@@ -17,9 +17,10 @@
     <td><%= user.name %></td>
     <td><%= user.ext %></td>
     <td><%= user.email %></td>
-    <% if User.is_admin?(session[:user]) %>
-      <td><%= link_to 'Show', user %></td>
+    <% if session[:user].id == user.id || User.is_admin?(session[:user]) %>
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <%end %>
+    <% if User.is_admin?(session[:user])%>
       <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
   <% end %>
   </tr>

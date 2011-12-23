@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authorize
-  before_filter :check_admin, :except => [:index, :show]
+  before_filter :check_admin, :except => [:index, :show, :edit, :update]
 
 
   # GET /users
@@ -38,7 +38,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+     @user = User.find(params[:id])
+    if !is_can_edit(@user)
+      redirect_to users_url
+    end
+   
   end
 
   # POST /users
@@ -60,7 +64,12 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
+    
     @user = User.find(params[:id])
+    
+    if !is_can_edit(@user)
+      redirect_to users_url
+    end
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -98,6 +107,15 @@ class UsersController < ApplicationController
     unless User.is_admin?(session[:user])
       redirect_to root_path
     end
+  end
+
+  def is_can_edit(user)
+    if User.is_admin?(session[:user]) || user.id == session[:user].id
+      true
+    else
+      false
+    end
+
   end
 
 end

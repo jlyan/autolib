@@ -5,10 +5,10 @@
     <th>Name</th>
     <th>Author</th>
     <th>Pub_ date</th>
-    <th>Detail</th>
     <th>Publisher</th>
     <th>Status</th>
     <th>Borrower</th>
+    <th>Detail</th>
      <% if User.is_admin?(session[:user]) %>
       <th></th>
       <th></th>
@@ -20,7 +20,6 @@
     <td><%= book.name %></td>
     <td><%= book.author %></td>
     <td><%= book.pub_date %></td>
-    <td><a href="<%= book.douban_url%>">detail</a></td>
     <td><%= book.publisher %></td>
     <td><%= book.status %></td>
     <% if(book.borrower_id && User.find(book.borrower_id))%>
@@ -28,6 +27,7 @@
     <% else %>
       <td>&nbsp;</td>
     <% end%>
+    <td><a href="<%= book.douban_url%>">detail</a></td>
      <% if User.is_admin?(session[:user]) %>
     <td><%= link_to 'Edit', edit_book_path(book) %></td>
     <td><%= link_to 'Destroy', book, confirm: 'Are you sure?', method: :delete %></td>
