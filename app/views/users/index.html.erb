@@ -5,10 +5,11 @@
     <th>Name</th>
     <th>Ext</th>
     <th>Email</th>
-    <th>Is admin</th>
+    <% if User.is_admin?(session[:user]) %>
     <th></th>
     <th></th>
     <th></th>
+  <% end %>
   </tr>
 
 <% @users.each do |user| %>
@@ -16,10 +17,11 @@
     <td><%= user.name %></td>
     <td><%= user.ext %></td>
     <td><%= user.email %></td>
-    <td><%= user.is_admin %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+    <% if User.is_admin?(session[:user]) %>
+      <td><%= link_to 'Show', user %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+  <% end %>
   </tr>
 <% end %>
 </table>

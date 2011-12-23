@@ -9,9 +9,10 @@
     <th>Publisher</th>
     <th>Status</th>
     <th>Borrower</th>
-    <th></th>
-    <th></th>
-    <th></th>
+     <% if User.is_admin?(session[:user]) %>
+      <th></th>
+      <th></th>
+     <% end %>
   </tr>
 
 <% @books.each do |book| %>
@@ -27,8 +28,10 @@
     <% else %>
       <td>&nbsp;</td>
     <% end%>
+     <% if User.is_admin?(session[:user]) %>
     <td><%= link_to 'Edit', edit_book_path(book) %></td>
     <td><%= link_to 'Destroy', book, confirm: 'Are you sure?', method: :delete %></td>
+  <% end %>
   </tr>
 <% end %>
 </table>

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authorize
+  before_filter :check_admin, :except => [:index, :show]
+
 
   # GET /users
   # GET /users.json
@@ -86,11 +88,16 @@ class UsersController < ApplicationController
   protected
 
   def authorize
-    unless session[:user_id]
+    unless session[:user]
       redirect_to root_path
     end
     
   end
 
+  def check_admin
+    unless User.is_admin?(session[:user])
+      redirect_to root_path
+    end
+  end
 
 end

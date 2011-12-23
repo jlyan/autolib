@@ -1,9 +1,9 @@
 module SessionsHelper
   def sign_in(user)
-    session[:user_id] = user.id
+    session[:user] = user
   end
 
   def sign_out
-    session[:user_id] = nil
+    session[:user] = nil
   end
 end
