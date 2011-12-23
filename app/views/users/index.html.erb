@@ -28,4 +28,7 @@
 
 <br />
 
-<%= link_to 'New User', new_user_path %>
+
+<% if User.is_admin?(session[:user]) %>
+  <%= link_to 'New User', new_user_path %>
+<% end %>
