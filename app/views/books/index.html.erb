@@ -8,6 +8,7 @@
     <th>Publisher</th>
     <th>Status</th>
     <th>Borrower</th>
+    <th>Borrow_date</th>
     <th>Detail</th>
      <% if User.is_admin?(session[:user]) %>
       <th></th>
@@ -27,6 +28,11 @@
     <% else %>
       <td>&nbsp;</td>
     <% end%>
+    <% if book.status == '借出' %>
+        <td><%= book.updated_at.to_date %></td>
+        <% else %>
+        <td>&nbsp;</td>
+      <% end %>
     <td><a href="<%= book.douban_url%>">detail</a></td>
      <% if User.is_admin?(session[:user]) %>
     <td><%= link_to 'Edit', edit_book_path(book) %></td>
