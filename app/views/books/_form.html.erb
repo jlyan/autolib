@@ -41,7 +41,7 @@
   </div>
   <div class="field">
     <%= f.label :borrower_id %><br />
-    <%= f.select(:borrower_id, @users.map{|u| [u.name, u.id]},:prompt => "Select a user") %>
+    <%= f.select(:borrower_id, @users.map{|u| [u.name, u.id]},{ :include_blank => true }) %>
   </div>
   <div class="actions">
     <%= f.submit %>
