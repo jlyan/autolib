@@ -13,7 +13,7 @@
   </tr>
 
 <% @users.each do |user| %>
-  <tr>
+  <tr  class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td><%= user.name %></td>
     <td><%= user.ext %></td>
     <td><%= user.email %></td>
