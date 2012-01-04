@@ -40,6 +40,9 @@
   <%= @book.borrower_id %>
 </p>
 
+<% if User.is_admin?(session[:user]) %>
+  <%= link_to 'New Book', new_book_path %>
+<% end %>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>

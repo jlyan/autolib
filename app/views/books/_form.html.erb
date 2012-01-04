@@ -43,6 +43,10 @@
     <%= f.label :borrower_id %><br />
     <%= f.select(:borrower_id, @users.map{|u| [u.name, u.id]},{ :include_blank => true }) %>
   </div>
+  <div class="field">
+    <%= f.label :donator %><br />
+    <%= f.text_field :donator %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
